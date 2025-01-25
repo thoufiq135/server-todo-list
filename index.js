@@ -1,6 +1,7 @@
 let express=require("express")
+require('dotenv').config();
 let mong=require("mongoose")
-url="mongodb+srv://todo:Shaik13579@cluster0.ze5zd.mongodb.net/todo?retryWrites=true&w=majority&appName=Cluster0"
+url="mongodb+srv://todo:Shaik13579@cluster0.ze5zd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 mong.connect(url).then(()=>{
     console.log("connected to mongo server")
 }).catch((e)=>{
@@ -16,9 +17,10 @@ const pro=mong.model("task",schema)
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
+let port=process.env.port||3000
 
 
-const port=8000
+ 
 
 app.get("/",async(req,res)=>{
     try{
@@ -62,7 +64,7 @@ app.put("/:id", async (req, res) => {
     const update = req.body;
 
     try {
-        // Assuming you're updating the 'name' field and other fields
+       
         const updatedProduct = await pro.updateOne(
             { "name": id },  
             { $set: update }  
