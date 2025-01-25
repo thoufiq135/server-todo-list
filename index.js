@@ -17,7 +17,7 @@ const pro=mong.model("task",schema)
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-let port=process.env.port||3000
+let port=process.env.port||8000
 
 
  
@@ -92,6 +92,6 @@ app.delete("/:id",(req,res)=>{
     
 
 })
-app.listen(port,()=>{
+app.listen(port,'0.0.0.0',()=>{
     console.log(`server is working on ${port}....`)
 }) 
